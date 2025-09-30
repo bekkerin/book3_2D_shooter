@@ -3,15 +3,19 @@ using System.Collections;
 
 public class MovingTarget : MonoBehaviour {
 
+	public int fallSpeed;
 	// Use this for initialization
-	void Start () {
-		GetComponent<Rigidbody2D> ().velocity = Vector2.down * 10;
+	void Start () 
+	{
+		fallSpeed = 5;
+		GetComponent<Rigidbody2D> ().velocity = Vector2.down * fallSpeed;
 
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 }

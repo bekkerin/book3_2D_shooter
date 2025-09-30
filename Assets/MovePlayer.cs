@@ -4,36 +4,39 @@ using System.Collections;
 public class MovePlayer : MonoBehaviour {
 	public GameObject bullet;
 	public AudioClip fireSound;
-
+	public float moveSpeed; //ADDED
+	public float bulletSpeed;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		moveSpeed = 5.0f;
+		bulletSpeed = 1000f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKey (KeyCode.LeftArrow)) 
 		{
-			gameObject.transform.Translate (Vector3.left * 0.1f);
+			gameObject.transform.Translate (Vector3.left * moveSpeed * Time.deltaTime);
 		}
 		if (Input.GetKey (KeyCode.RightArrow)) 
 		{
-			gameObject.transform.Translate (Vector3.right * 0.1f);
+			gameObject.transform.Translate (Vector3.right * moveSpeed * Time.deltaTime);
 		}
 		if (Input.GetKey (KeyCode.UpArrow)) 
 		{
-			gameObject.transform.Translate (Vector3.up * 0.1f);
+			gameObject.transform.Translate (Vector3.up * moveSpeed * Time.deltaTime);
 		}
 		if (Input.GetKey (KeyCode.DownArrow)) 
 		{
-			gameObject.transform.Translate (Vector3.down * 0.1f);
+			gameObject.transform.Translate (Vector3.down * moveSpeed * Time.deltaTime);
 		}
 
 		if (Input.GetKeyDown (KeyCode.Space)) 
 		{
-			GameObject b = (GameObject)(Instantiate (bullet, transform.position + transform.up*1.5f, Quaternion.identity));
-			b.GetComponent<Rigidbody2D> ().AddForce (transform.up * 1000);
+			GameObject b = (GameObject)(Instantiate (bullet, transform.position + transform.up * 1.5f, Quaternion.identity));
+			b.GetComponent<Rigidbody2D> ().AddForce (transform.up * bulletSpeed);
 			GetComponent<AudioSource> ().clip = fireSound;
 			GetComponent<AudioSource> ().Play ();
 		}
